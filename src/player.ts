@@ -1,4 +1,4 @@
-const API_ROOT = "http://localhost:8080/api"
+const API_ROOT = "https://music-api.stream-control.ponyfest.horse/api"
 
 export interface Track {
     trackId: string;
@@ -79,6 +79,8 @@ export class Player extends EventTarget {
         this.audio.src = this.currentTrack.trackUrl;
         try {
             await this.audio.play();
+            this.emitUpdatedTrack();
+            await this.fetch(`${API_ROOT}/streams/${this.stream}/state`, {method: "PATCH", headers: {"Content-Type": "application/x-www-form-urlencoded"}, body: `playing=true`});
         } catch(e) {
             if (e.name === "NotAllowedError") {
                 console.log("ughhhh");
@@ -90,7 +92,9 @@ export class Player extends EventTarget {
 
     private stop() {
         this.audio.pause();
+        this.playing = false;
         this.fetch(`${API_ROOT}/streams/${this.stream}/state`, {method: "PATCH", headers: {"Content-Type": "application/x-www-form-urlencoded"}, body: `playing=false`});
+        this.audio.src = "";
     }
 
     private async playNextTrack(delay: number = 0) {
@@ -98,7 +102,7 @@ export class Player extends EventTarget {
         const json = await request.json();
         this.currentTrack = json.track;
         this.emitUpdatedTrack();
-        const result = await this.fetch(`${API_ROOT}/streams/${this.stream}/state`, {method: "PATCH", headers: {"Content-Type": "application/x-www-form-urlencoded"}, body: `currentTrack=${this.currentTrack?.trackId || ''}&playing=true`});
+        await this.fetch(`${API_ROOT}/streams/${this.stream}/state`, {method: "PATCH", headers: {"Content-Type": "application/x-www-form-urlencoded"}, body: `currentTrack=${this.currentTrack?.trackId || ''}`});
         if (delay) {
             await sleep(delay);
         }
@@ -112,8 +116,8 @@ export class Player extends EventTarget {
             return;
         }
         if (data.event === "update") {
-            const k: String = data.event.key;
-            const value: String = data.event.value;
+            const k: String = data.key;
+            const value: String = data.value;
             switch (k) {
                 case "currentTrack":
                     // we don't need to do anything here? I think only we can trigger this.
@@ -134,7 +138,7 @@ export class Player extends EventTarget {
     }
 
     public async becomeActive(delay: number = 0) {
-        if (!this.autoplay) {
+        if (!this.autoplay || this.playing) {
             return;
         }
         await this.playNextTrack(delay);

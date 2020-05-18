@@ -1,9 +1,14 @@
 import {Player} from "./player";
 import './index.css';
 
-const player = new Player("obs1", "password");
+const params = new URLSearchParams(location.search);
+const player = new Player(params.get("stream") || "", params.get("password") || "");
+let currentTitle = "";
+let currentArtist = "";
 player.addEventListener('trackupdated', (e) => {
-   if (e.track) {
+   if (e.track && e.track.title !== currentTitle && e.track.artist !== currentArtist) {
+       currentArtist = e.track.artist;
+       currentTitle = e.track.title;
        const s = document.getElementById('nowplaying')!;
        scrollText(s, e.track.title + ' — ' + e.track.artist);
    }
