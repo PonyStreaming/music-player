@@ -21,6 +21,10 @@ module.exports = {
                 test: /\.css$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
+            {
+                test: /\.woff2?$/,
+                use: 'file-loader',
+            },
         ],
     },
     plugins: [
