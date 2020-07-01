@@ -6,7 +6,7 @@ const player = new Player(params.get("stream") || "", params.get("password") || 
 let currentTitle = "";
 let currentArtist = "";
 player.addEventListener('trackupdated', (e) => {
-   if (e.track && e.track.title !== currentTitle && e.track.artist !== currentArtist) {
+   if (e.track && (e.track.title !== currentTitle || e.track.artist !== currentArtist)) {
        currentArtist = e.track.artist;
        currentTitle = e.track.title;
        const s = document.getElementById('nowplaying')!;
