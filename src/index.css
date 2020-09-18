@@ -1,10 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@font-face {
+    font-family: "Segoe UI";
+    src: url("./segoeui.woff2");
+}
 
 body {
     margin: 0;
     padding: 0;
     color: white;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     text-shadow: 1px 1px #328b9a;
     overflow: hidden;
     height: 100vh;
@@ -17,8 +20,9 @@ body.scrolling {
 p {
     margin: 0;
     padding: 0;
-    padding-left: 30px;
-    font-size: 50px;
+    padding-left: 10px;
+    max-width: calc(100% - 10px);
+    font-size: 35px;
     white-space: nowrap;
     /*text-transform: uppercase;*/
     position: absolute;
@@ -30,4 +34,11 @@ p {
 
 #very-large {
     width: 100vw;
+}
+
+#nowplaying-container span {
+    display: block;
+    text-wrap: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

@@ -9,8 +9,11 @@ player.addEventListener('trackupdated', (e) => {
    if (e.track && (e.track.title !== currentTitle || e.track.artist !== currentArtist)) {
        currentArtist = e.track.artist;
        currentTitle = e.track.title;
-       const s = document.getElementById('nowplaying')!;
-       scrollText(s, e.track.title + ' — ' + e.track.artist);
+       const t = document.getElementById('nowplaying-title')!;
+       // scrollText(s, e.track.title + ' – ' + e.track.artist);
+       t.innerText = currentTitle;
+       const a = document.getElementById('nowplaying-artist')!;
+       a.innerText = currentArtist;
    }
 });
 
