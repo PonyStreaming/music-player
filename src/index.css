@@ -1,16 +1,16 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');*/
 
 @font-face {
-    font-family: "Tondu";
-    src: url("./Tondu_Beta.woff2");
+    font-family: "Eras Bold ITC";
+    src: url("./ErasBoldITC.ttf");
 }
 
 body {
     margin: 0;
     padding: 0;
     color: white;
-    font-family: 'Tondu', sans-serif;
-    -webkit-text-stroke: 2px #6d0c00;
+    font-family: 'Eras Bold ITC', sans-serif;
+    -webkit-text-stroke: 2px rgba(0,0,0,0.8);
     /*text-shadow: 1px 1px #328b9a;*/
     overflow: hidden;
     height: 100vh;
