@@ -1,14 +1,15 @@
 @font-face {
-    font-family: "Segoe UI";
-    src: url("./segoeui.woff2");
+    font-family: "Mont";
+    src: url("./Mont-Heavy.otf");
 }
 
 body {
     margin: 0;
     padding: 0;
     color: white;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Mont', sans-serif;
     text-shadow: 1px 1px #328b9a;
+    font-weight: bold;
     overflow: hidden;
     height: 100vh;
 }
@@ -22,7 +23,8 @@ p {
     padding: 0;
     padding-left: 10px;
     max-width: calc(100% - 10px);
-    font-size: 35px;
+    font-size: 38px;
+    line-height: 42px;
     white-space: nowrap;
     /*text-transform: uppercase;*/
     position: absolute;
