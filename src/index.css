@@ -1,13 +1,13 @@
 @font-face {
-    font-family: "Mont";
-    src: url("./mont-heavy.woff2");
+    font-family: "Aller";
+    src: url("./Aller_Rg.ttf");
 }
 
 body {
     margin: 0;
     padding: 0;
     color: white;
-    font-family: 'Mont', sans-serif;
+    font-family: 'Aller', sans-serif;
     text-shadow: 1px 1px #328b9a;
     font-weight: bold;
     overflow: hidden;
@@ -21,10 +21,10 @@ body.scrolling {
 p {
     margin: 0;
     padding: 0;
-    padding-left: 10px;
+    padding-left: 5px;
     max-width: calc(100% - 10px);
     font-size: 38px;
-    line-height: 42px;
+    /*line-height: 42px;*/
     white-space: nowrap;
     /*text-transform: uppercase;*/
     position: absolute;

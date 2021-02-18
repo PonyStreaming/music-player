@@ -22,7 +22,7 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
-                test: /\.woff2?|\.otf$/,
+                test: /\.woff2?|\.otf|\.ttf$/,
                 use: 'file-loader',
             },
         ],
