@@ -1,30 +1,30 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');*/
 
 @font-face {
-    font-family: "Eras Bold ITC";
-    src: url("./ErasBoldITC.ttf");
+    font-family: "Futura";
+    src: url("./Futura-Medium.woff2");
 }
 
 body {
     margin: 0;
     padding: 0;
     color: white;
-    font-family: 'Eras Bold ITC', sans-serif;
-    -webkit-text-stroke: 2px rgba(0,0,0,0.8);
+    font-family: 'Futura', sans-serif;
+    /*-webkit-text-stroke: 2px rgba(0,0,0,0.8);*/
     /*text-shadow: 1px 1px #328b9a;*/
     overflow: hidden;
     height: 100vh;
 }
 
 body.scrolling {
-    -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 95%, transparent 100%);
 }
 
 p {
     margin: 0;
     padding: 0;
     padding-left: 5px;
-    font-size: 50px;
+    font-size: 48px;
     white-space: nowrap;
     /*text-transform: uppercase;*/
     position: absolute;

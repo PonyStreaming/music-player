@@ -10,7 +10,7 @@ player.addEventListener('trackupdated', (e) => {
        currentArtist = e.track.artist;
        currentTitle = e.track.title;
        const s = document.getElementById('nowplaying')!;
-       scrollText(s, e.track.title + ' — ' + e.track.artist);
+       scrollText(s, e.track.artist + ' — ' + e.track.title);
    }
 });
 
