@@ -9,43 +9,59 @@ player.addEventListener('trackupdated', (e) => {
    if (e.track && (e.track.title !== currentTitle || e.track.artist !== currentArtist)) {
        currentArtist = e.track.artist;
        currentTitle = e.track.title;
+       pending = [];
        const t = document.getElementById('nowplaying-title')!;
-       // scrollText(s, e.track.title + ' – ' + e.track.artist);
-       t.innerText = currentTitle;
+       scrollText(t, 'title', currentTitle);
+       // t.innerText = currentTitle;
        const a = document.getElementById('nowplaying-artist')!;
-       a.innerText = currentArtist;
+       // a.innerText = currentArtist;
+       scrollText(a, 'artist', currentArtist);
    }
 });
 
 // this is incredibly awful. it is, however, also handily cancellable. so it has that going for it.
-let timeout: ReturnType<typeof setTimeout>;
-function scrollText(s: HTMLElement, text: string) {
-    clearTimeout(timeout);
+let timeouts: {[id: string]: ReturnType<typeof setTimeout>} = {};
+let pending: [HTMLElement, string, string][] = [];
+function scrollText(s: HTMLElement, id: string, text: string) {
+    clearTimeout(timeouts[id]);
     const p = s.parentElement!;
     p.style.transitionProperty = '';
     p.style.transitionDuration = '0';
     p.style.left = '0';
-    timeout = setTimeout(() => {
+    timeouts[id] = setTimeout(() => {
         s.innerText = text;
-        timeout = setTimeout(() => {
+        timeouts[id] = setTimeout(() => {
             p.style.transitionProperty = 'left';
-            timeout = setTimeout(() => {
+            timeouts[id] = setTimeout(() => {
                 const width = s.offsetWidth;
-                if (width + 30 > window.innerWidth) {
+                if (width + 10 > window.innerWidth) {
                     s.innerHTML = s.innerHTML + "<span style='width: 200px;display: inline-block;'></span>" + s.innerHTML;
-                    document.body.className = 'scrolling';
-                    timeout = setTimeout(() => {
-                        p.style.transitionDuration = (width / 150) + 's';
+                    document.getElementById(id)!.classList.add('scrolling');
+                    timeouts[id] = setTimeout(() => {
+                        p.style.transitionDuration = ((width + 200) / 200) + 's';
                         p.style.left = (-width - 200) + "px";
-                        timeout = setTimeout(() => {
+                        timeouts[id] = setTimeout(() => {
                             p.style.transitionProperty = '';
                             p.style.transitionDuration = '0';
                             p.style.left = '0';
-                            scrollText(s, text);
+                            pending.push([s, id, text])
+                            if (pending.length == 2) {
+                                let p: [HTMLElement, string, string] | undefined;
+                                while (p = pending.pop()) {
+                                    scrollText(...p);
+                                }
+                            }
                         }, (width/150) * 1000 + 200);
                     }, 3000);
                 } else {
-                    document.body.className = '';
+                    pending.push([s, id, text])
+                    if (pending.length == 2) {
+                        let p: [HTMLElement, string, string] | undefined;
+                        while (p = pending.pop()) {
+                            scrollText(...p);
+                        }
+                    }
+                    document.getElementById(id)!.classList.remove('scrolling');
                 }
             }, 20);
         }, 20);
@@ -66,7 +82,10 @@ if (window.obsstudio) {
         if (active) {
             player.becomeActive(3000);
         } else {
-            clearTimeout(timeout);
+            pending = [];
+            for (let i of Object.keys(timeouts)) {
+                clearTimeout(timeouts[i]);
+            }
             player.becomeInactive();
         }
     };

@@ -1,30 +1,31 @@
 @font-face {
-    font-family: "Mont";
-    src: url("./mont-heavy.woff2");
+    font-family: "TemplateGothic";
+    src: url(./TemplateGothicBold.woff2);
+    font-weight: bold;
 }
 
 body {
     margin: 0;
     padding: 0;
-    color: white;
-    font-family: 'Mont', sans-serif;
-    text-shadow: 1px 1px #328b9a;
+    color: #88e57e;
+    font-family: 'TemplateGothic', sans-serif;
+    /*text-shadow: 1px 1px #328b9a;*/
     font-weight: bold;
     overflow: hidden;
     height: 100vh;
 }
 
-body.scrolling {
+.scrolling {
     -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
 }
 
 p {
     margin: 0;
     padding: 0;
-    padding-left: 10px;
-    max-width: calc(100% - 10px);
-    font-size: 38px;
-    line-height: 42px;
+    /*padding-left: 10px;*/
+    /*max-width: calc(100% - 1px);*/
+    font-size: 50px;
+    line-height: 50px;
     white-space: nowrap;
     /*text-transform: uppercase;*/
     position: absolute;
@@ -38,9 +39,21 @@ p {
     width: 100vw;
 }
 
-#nowplaying-container span {
+.nowplaying-container span {
     display: block;
     text-wrap: none;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    /*text-overflow: ellipsis;*/
+    /*position: relative;*/
+    /*overflow: hidden;*/
+}
+
+.nowplaying-container {
+    /*width: 100vw;*/
+}
+
+.container {
+    text-wrap: none;
+    position: relative;
+    width: 100vw;
+    height: 55px;
 }
