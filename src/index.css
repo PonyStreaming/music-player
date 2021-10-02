@@ -1,14 +1,14 @@
 @font-face {
-    font-family: "TemplateGothic";
-    src: url(./TemplateGothicBold.woff2);
+    font-family: "Mont Heavy";
+    src: url(./mont-heavy.woff2);
     font-weight: bold;
 }
 
 body {
     margin: 0;
     padding: 0;
-    color: #88e57e;
-    font-family: 'TemplateGothic', sans-serif;
+    color: white;
+    font-family: 'Mont Heavy', sans-serif;
     /*text-shadow: 1px 1px #328b9a;*/
     font-weight: bold;
     overflow: hidden;
@@ -24,8 +24,8 @@ p {
     padding: 0;
     /*padding-left: 10px;*/
     /*max-width: calc(100% - 1px);*/
-    font-size: 50px;
-    line-height: 50px;
+    font-size: 45px;
+    line-height: 40px;
     white-space: nowrap;
     /*text-transform: uppercase;*/
     position: absolute;
@@ -56,4 +56,8 @@ p {
     position: relative;
     width: 100vw;
     height: 55px;
+}
+
+#artist {
+    margin-top: -5px;
 }
