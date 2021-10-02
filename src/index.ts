@@ -14,6 +14,10 @@ player.addEventListener('trackupdated', (e) => {
    }
 });
 
+if (params.get("stroke")) {
+    document.documentElement.style.setProperty("--stroke", params.get("stroke"));
+}
+
 // this is incredibly awful. it is, however, also handily cancellable. so it has that going for it.
 let timeout: ReturnType<typeof setTimeout>;
 function scrollText(s: HTMLElement, text: string) {

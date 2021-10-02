@@ -1,13 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&display=swap');
+
+:root {
+    --stroke: #4c63a6;
+}
 
 body {
     margin: 0;
     padding: 0;
     color: white;
-    font-family: 'Roboto', sans-serif;
-    text-shadow: 1px 1px #328b9a;
+    font-family: 'Prompt', sans-serif;
+    /*text-shadow: 1px 1px #328b9a;*/
     overflow: hidden;
     height: 100vh;
+    font-weight: bold;
+    -webkit-text-stroke: 3px var(--stroke);
 }
 
 body.scrolling {
@@ -18,7 +24,7 @@ p {
     margin: 0;
     padding: 0;
     padding-left: 30px;
-    font-size: 50px;
+    font-size: 60px;
     white-space: nowrap;
     /*text-transform: uppercase;*/
     position: absolute;
